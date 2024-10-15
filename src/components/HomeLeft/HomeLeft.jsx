@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import BlogCard from './BlogCard';
 
-const HomeLeft = () => {
+const HomeLeft = ({setSaveInfo, saveInfo}) => {
     const [cafeDatas, setCafeDatas] = useState([])
+
+    
 
     useEffect(()=>{
         fetch('cafes.json')
@@ -15,6 +17,8 @@ const HomeLeft = () => {
                 cafeDatas.map(cafeData => <BlogCard
                 key={cafeData.id}
                 cafeData={cafeData}
+                saveInfo={saveInfo}
+                setSaveInfo={setSaveInfo}
                 ></BlogCard>)
             }
         </div>

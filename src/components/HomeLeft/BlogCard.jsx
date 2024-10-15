@@ -1,8 +1,14 @@
 import { FaRegBookmark } from "react-icons/fa6";
 
 
-const BlogCard = ({ cafeData }) => {
-    const { thumbnailImg, title, profileImg, profileName, postDate, readTime, hashtag } = cafeData
+const BlogCard = ({ cafeData, setSaveInfo, saveInfo }) => {
+    const {id, thumbnailImg, title, profileImg, profileName, postDate, readTime, hashtag } = cafeData;
+
+const handleReadButton = () =>{
+const blogData = {title, readTime}
+setSaveInfo([...saveInfo, blogData])
+}
+
     return (
         <div className="mb-[78px]">
             <img src={thumbnailImg} alt="" />
@@ -22,10 +28,10 @@ const BlogCard = ({ cafeData }) => {
             <h1 className="my-4 text-[40px] font-bold leading-[64px]">{title}</h1>
             <div className="flex items-center gap-4 font-medium text-[#11111199] text-xl">
                 {
-                    hashtag?.map(tag => <p>{tag}</p>)
+                    hashtag?.map((tag, index) => <p key={index}>{tag}</p>)
                 }
             </div>
-            <button className="mt-[21px] text-[#6047EC] text-xl font-semibold underline">Make as Read</button>
+            <button onClick={() => handleReadButton()} className="mt-[21px] text-[#6047EC] text-xl font-semibold underline">Make as Read</button>
         </div>
     );
 };
